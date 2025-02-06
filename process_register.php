@@ -42,6 +42,8 @@
 		else
 		{
 			echo "Registered";
+			header("Location: register_success.php");
+			exit();
 		}
 		printf("SQL statement is $sql");
 		ob_end_flush();

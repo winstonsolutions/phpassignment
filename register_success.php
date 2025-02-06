@@ -2,7 +2,7 @@
 require 'config.php';
 require 'database.php';
 $g_title = BLOG_NAME . ' - Index';
-$g_page = 'index';
+$g_page = 'register';
 require 'header.php';
 require 'menu.php';
 
@@ -13,13 +13,11 @@ require 'menu.php';
 // Put this code in first line of web page. 
 // session_start();
 
-if(!isset($_SESSION['username'])){
-	header("location:login.php");
-}
+
 
 ?>
 <div id="all_blogs">
-You have successfully logged in
+You have successfully registered
 
 </div>
 
