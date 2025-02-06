@@ -2,7 +2,7 @@
 require 'config.php';
 require 'database.php';
 $g_title = BLOG_NAME . ' - Index';
-$g_page = 'login';
+$g_page = 'register';
 require 'header.php';
 require 'menu.php';
 

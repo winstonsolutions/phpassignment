@@ -30,22 +30,26 @@ $mypassword = stripslashes($mypassword);
 $cleanusername = $mysqli->real_escape_string($myusername);
 $cleanpassword = $mysqli->real_escape_string($mypassword);
 
-$sql="SELECT password FROM $tbl_name WHERE username='$cleanusername' \n limit 1";
+$sql="SELECT password, salt FROM $tbl_name WHERE username='$cleanusername' \n limit 1";
 // $result=mysql_query($sql);
 $result = $mysqli->query($sql);
 
 while ($row = $result->fetch_assoc()) {
-	$returnedpassword=$row['password'];
+	$returnedpassword = $row['password'];
+	$salt = $row['salt']; // Retrieve the salt from the database
 }
-// If returned password matches entered password, valid login
 
-if($mypassword==$returnedpassword && $mypassword<>''){
+// Hash the entered password with the retrieved salt
+$salted_password = $salt . $cleanpassword; // Combine salt and entered password
+$hashed_password = hash("sha512", $salted_password); // Hash the combined string
+
+// Compare the hashed password with the stored password
+if ($hashed_password == $returnedpassword && $cleanpassword <> '') {
 	// Register $myusername and redirect to file "login_success.php"
 	session_start();
 	$_SESSION['username'] = $cleanusername;
 	header("location:login_success.php");
-}
-else {
+} else {
 	echo "Wrong Username or Password";
 	echo "<pre>$sql</pre>";
 }
