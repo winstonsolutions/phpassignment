@@ -1,8 +1,12 @@
-<html>
-	<head>
-		<title>Main Login Page</title>
-	</head>
-	<body>
+<?php
+require 'config.php';
+require 'database.php';
+$g_title = BLOG_NAME . ' - Index';
+$g_page = 'index';
+require 'header.php';
+require 'menu.php';
+
+?>
 
 <?php
 // Check if session is not registered, redirect back to main page. 
@@ -10,14 +14,15 @@
 session_start();
 
 if(!isset($_SESSION['username'])){
-	header("location:main_login.php");
+	header("location:login.php");
 }
 
 ?>
+<div id="all_blogs">
+You have successfully logged in
 
-Login Successful
+</div>
 
-
-
-	</body>
-</html>
+<?php
+  require 'footer.php';
+?>
