@@ -1,3 +1,14 @@
+<?php
+  require 'config.php';
+  require 'database.php';
+  $g_title = BLOG_NAME . ' - Index';
+  $g_page = 'index';
+  require 'header.php';
+  require 'menu.php';
+  
+?>
+
+<div id="all_blogs"></div>
 <html>
 	<head>
 		<title>Main Login Page</title>
@@ -35,3 +46,7 @@
 
 	</body>
 </html>
+
+<?php
+  require 'footer.php';
+?>
