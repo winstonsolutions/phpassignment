@@ -50,8 +50,8 @@ if ($hashed_password == $returnedpassword && $cleanpassword <> '') {
 	$_SESSION['username'] = $cleanusername;
 	header("location:login_success.php");
 } else {
-	echo "Wrong Username or Password";
-	echo "<pre>$sql</pre>";
+	$_SESSION['username'] = $cleanusername;
+	header("location:login_fail.php");
 }
 ob_end_flush();
 ?>
