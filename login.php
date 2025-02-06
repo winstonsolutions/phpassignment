@@ -1,25 +1,27 @@
 <?php
-  require 'config.php';
-  require 'database.php';
-  $g_title = BLOG_NAME . ' - Index';
-  $g_page = 'index';
-  require 'header.php';
-  require 'menu.php';
-  
+require 'config.php';
+require 'database.php';
+$g_title = BLOG_NAME . ' - Index';
+$g_page = 'index';
+require 'header.php';
+require 'menu.php';
+
 ?>
 
-<div id="all_blogs"></div>
-<html>
+<div id="all_blogs">
+	<html>
+
 	<head>
 		<title>Main Login Page</title>
 	</head>
+
 	<body>
 
-		<table width="300" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">
+		<table width="300" border="0"  cellpadding="0" cellspacing="1">
 			<tr>
 				<form name="form1" method="post" action="checklogin.php">
 					<td>
-						<table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#FFFFFF">
+						<table width="100%" border="0" cellpadding="3" cellspacing="1">
 							<tr>
 								<td colspan="3"><strong>Member Login </strong></td>
 							</tr>
@@ -45,8 +47,9 @@
 		</table>
 
 	</body>
-</html>
 
+	</html>
+</div>
 <?php
-  require 'footer.php';
+require 'footer.php';
 ?>
