@@ -1,60 +1,48 @@
-<html>
-	<head>
-		<title>Main Login Page</title>
-	</head>
-	<body>
-
 <?php
+session_start();
 
-ob_start();
-// $host="localhost"; // Host name
-$host="192.168.56.103";
-$username="blogadmin"; // Mysql username
-$password="password"; // Mysql password
-$db_name="blog"; // Database name
-$tbl_name="members"; // Table name
-$mysqli = new mysqli($host, $username, $password, $db_name);
+// $host = "192.168.56.103"; // 数据库主机
+$host = "localhost";
+$dbname = "blog"; // 数据库名称
+$username = "blogadmin"; // 数据库用户名
+$password = "password"; // 数据库密码
 
-/* check connection */
-if ($mysqli->connect_errno) {
-	printf("Connect failed: %s\n", $mysqli->connect_error);
-	exit();
+try {
+    // 创建 PDO 连接
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("数据库连接失败：" . $e->getMessage());
 }
 
-$myusername=$_POST['myusername'];
-$mypassword=$_POST['mypassword'];
-// To protect MySQL injection
-$myusername = stripslashes($myusername);
-$mypassword = stripslashes($mypassword);
+// 获取用户输入
+$myusername = $_POST['myusername'] ?? '';
+$mypassword = $_POST['mypassword'] ?? '';
 
-$cleanusername = $mysqli->real_escape_string($myusername);
-$cleanpassword = $mysqli->real_escape_string($mypassword);
+// 预处理 SQL 查询，防止 SQL 注入
+$sql = "SELECT password, salt FROM members WHERE username = :username LIMIT 1";
+$stmt = $pdo->prepare($sql);
+$stmt->execute([':username' => $myusername]);
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-$sql="SELECT password, salt FROM $tbl_name WHERE username='$cleanusername' \n limit 1";
-// $result=mysql_query($sql);
-$result = $mysqli->query($sql);
+if ($user) {
+    $returnedpassword = $user['password'];
+    $salt = $user['salt'];
 
-while ($row = $result->fetch_assoc()) {
-	$returnedpassword = $row['password'];
-	$salt = $row['salt']; // Retrieve the salt from the database
+    // 生成哈希密码
+    $salted_password = $salt . $mypassword;
+    $hashed_password = hash("sha512", $salted_password);
+
+    // 验证密码
+    if ($hashed_password === $returnedpassword && !empty($mypassword)) {
+        $_SESSION['username'] = $myusername;
+        header("location:login_success.php");
+        exit();
+    }
 }
 
-// Hash the entered password with the retrieved salt
-$salted_password = $salt . $cleanpassword; // Combine salt and entered password
-$hashed_password = hash("sha512", $salted_password); // Hash the combined string
-
-// Compare the hashed password with the stored password
-if ($hashed_password == $returnedpassword && $cleanpassword <> '') {
-	// Register $myusername and redirect to file "login_success.php"
-	session_start();
-	$_SESSION['username'] = $cleanusername;
-	header("location:login_success.php");
-} else {
-	$_SESSION['username'] = $cleanusername;
-	header("location:login_fail.php");
-}
-ob_end_flush();
+// 失败情况
+$_SESSION['username'] = $myusername;
+header("location:login_fail.php");
+exit();
 ?>
-
-	</body>
-</html>
