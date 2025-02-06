@@ -12,10 +12,10 @@
   
   define('ADMIN_ADDRESS','blog_admin@mailinator.com');
 
-  define('DB_HOSTNAME', 'localhost');
-  define('DB_USER',     'serverside');
-  define('DB_PASSWORD', 'gorgonzola7!');
-  define('DB_DATABASE', 'serverside');
+  define('DB_HOSTNAME', '192.168.56.103');
+  define('DB_USER',     'blogadmin');
+  define('DB_PASSWORD', 'password');
+  define('DB_DATABASE', 'blog');
   
   define('BLOG_NAME','Stung Eye');
   define('BLOG_INDEX_NUM_POSTS',5);
