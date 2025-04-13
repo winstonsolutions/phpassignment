@@ -1,12 +1,12 @@
 <?php
-  require 'config.php';
-  require 'database.php';
-  $g_title = BLOG_NAME . ' - Index';
-  $g_page = 'index';
-  require 'header.php';
-  require 'menu.php';
-  
-  $posts = find_all_blogs(BLOG_INDEX_NUM_POSTS);
+require 'init.php';
+require 'database.php';
+$g_title = BLOG_NAME . ' - Index';
+$g_page = 'index';
+require 'header.php';
+require 'menu.php';
+
+$posts = find_all_blogs(BLOG_INDEX_NUM_POSTS);
 ?>
 <div id="all_blogs">
   <?php foreach($posts as $post): ?>
@@ -24,5 +24,5 @@
   <?php endforeach; ?>
 </div>
 <?php
-  require 'footer.php';
+require 'footer.php';
 ?>

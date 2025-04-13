@@ -1,6 +1,6 @@
 <?php
   ob_start();
-  require 'config.php';
+  require 'init.php';
   require 'database.php';
   $g_title = BLOG_NAME . ' - Admin';
   $g_page = 'admin';
@@ -11,18 +11,25 @@
 	use PhpRbac\Rbac;
 	$rbac = new Rbac();
 
-	// Get Role Id
-	$role_id = $rbac->Roles->returnId('admin');
-
-
-	// Make sure User has 'forum_user' Role
-	if ($rbac->Users->hasRole($role_id, $_SESSION['userid']))
+	// Check if user is logged in
+	if (!isset($_SESSION['userid']))
 	{
-		$var_testoutput="<p>You are admin, and should be here.</p>";
+		$var_testoutput="<h2>You should not be here! Please login first.</h2>";
 	}
 	else
 	{
-		$var_testoutput="<h2>You  should not be here!</h2>";
+		// Get Role Id
+		$role_id = $rbac->Roles->returnId('admin');
+
+		// Make sure User has 'admin' Role
+		if ($rbac->Users->hasRole($role_id, $_SESSION['userid']))
+		{
+			$var_testoutput="<p>You are admin, and should be here.</p>";
+		}
+		else
+		{
+			$var_testoutput="<h2>You should not be here!</h2>";
+		}
 	}
 
 ?>

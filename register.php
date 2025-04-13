@@ -1,5 +1,5 @@
 <?php
-require 'config.php';
+require 'init.php';
 require 'database.php';
 $g_title = BLOG_NAME . ' - Index';
 $g_page = 'register';

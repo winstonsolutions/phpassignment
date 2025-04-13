@@ -1,5 +1,5 @@
 <?php
-  require 'config.php';
+  require 'init.php';
   require 'database.php';
   $g_title = BLOG_NAME . ' - New Post';
   $g_page = 'create';

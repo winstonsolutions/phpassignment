@@ -1,6 +1,6 @@
 <?php
 error_reporting(E_ALL ^ E_DEPRECATED);
-session_start();
+require 'init.php';
 require_once 'PhpRbac/autoload.php';
 if (!isset($g_page)) {
   $g_page = '';

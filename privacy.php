@@ -1,5 +1,5 @@
 <?php
-	require 'config.php';
+	require 'init.php';
 	require 'database.php';
 	$g_title = BLOG_NAME . ' - Index';
 	$g_page = 'privacy';
@@ -7,7 +7,7 @@
 	require 'menu.php';
 ?>
 
-<div id="all_blogs">  
+<div id="all_blogs">
 	<!-- Privacy Policy Content -->
 	<div style="width: 80%; margin: 20px auto; line-height: 1.6;">
 		<h2><strong>Privacy Policy</strong></h2>

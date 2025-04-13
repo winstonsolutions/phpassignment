@@ -7,8 +7,8 @@
 		<?php
 
 		ob_start();
-		// $host="localhost"; // Host name
-		$host="192.168.56.103";
+		$host="localhost"; // Host name
+		// $host="192.168.56.103";
 		$username="blogadmin"; // Mysql username
 		$password="password"; // Mysql password
 		$db_name="blog"; // Database name

@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-$host = "192.168.56.103"; // Database host
-// $host = "localhost";
+// $host = "192.168.56.103"; // Database host
+$host = "localhost";
 $dbname = "blog"; // Database name
 $username = "blogadmin"; // Database username
 $password = "password"; // Database password

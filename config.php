@@ -1,5 +1,4 @@
 <?php
-
   define('DEBUG',true);
 
   if (!DEBUG) {
@@ -12,8 +11,8 @@
 
   define('ADMIN_ADDRESS','blog_admin@mailinator.com');
 
-  define('DB_HOSTNAME', '192.168.56.103');
-  // define('DB_HOSTNAME', 'localhost');
+  // define('DB_HOSTNAME', '192.168.56.103');
+  define('DB_HOSTNAME', 'localhost');
   define('DB_USER',     'blogadmin');
   define('DB_PASSWORD', 'password');
   define('DB_DATABASE', 'blog');
