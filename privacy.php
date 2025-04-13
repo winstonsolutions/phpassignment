@@ -27,6 +27,9 @@
 		</ul>
 
 		<p>We do not sell or disclose your personal information for unauthorized purposes and ensure all shared data is used strictly for business needs in accordance with applicable laws.</p>
+
+		<h3><strong>Minors Under 18::</strong></h3>
+		<p>Our services are intended for individuals 18 years or older. We do not knowingly collect or process personal financial information from minors. If we become aware that we have collected such information from a minor without parental consent, we will take appropriate steps to delete it in compliance with applicable laws.</p>
 	</div>
 </div> <!-- Closing the #all_blogs div -->
 
